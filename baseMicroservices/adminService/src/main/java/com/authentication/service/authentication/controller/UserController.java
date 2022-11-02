@@ -26,7 +26,7 @@ public class UserController {
         return userService.loginService(user);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll(){
         return userService.getAll();
     }
