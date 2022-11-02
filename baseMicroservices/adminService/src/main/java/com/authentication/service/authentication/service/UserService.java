@@ -5,7 +5,6 @@ import com.authentication.service.authentication.model.User;
 import com.authentication.service.authentication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -19,20 +18,21 @@ public class UserService {
         String password = user.getPassword();
         List<User> foundUsers =  repository.loginUser(email);
         if(foundUsers.isEmpty()){
-            return "{\n" +
-                    "\"message\":"+"\" Authentication Failed !!! (USER NOT FOUND) \",\n"+
+            return "{" +
+                    "\"message\":"+"\" Authentication Failed !!! (USER NOT FOUND) \","+
+                    "\"status\":false"+
                     "}";
         }
 
         else if(!foundUsers.get(0).getPassword().equals(password)){
-            return "{\n" +
-                    "\"message\":"+"\" Password Incorrect !!!\",\n"+
+            return "{" +
+                    "\"message\":"+"\" Password Incorrect !!!\","+
+                    "\"status\":false"+
                     "}";
         }
-        return "{\n" +
-                "\"message\":"+"\" Successfully Logged-in\",\n"+
-                "\"data\": {\n"+" Name : "+foundUsers.get(0).getName()+",\n"+
-                "Email : "+foundUsers.get(0).getEmail()+"\n"+
+        return "{" +
+                "\"message\":"+"\" Successfully Login. \","+
+                "\"status\":true"+
                 "}";
     }
 

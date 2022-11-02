@@ -23,6 +23,7 @@ public class UserController {
 
     @PostMapping(value = "/login" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public String loginAUser(@RequestBody User user){
+        System.out.println(userService.loginService(user));
         return userService.loginService(user);
     }
 
